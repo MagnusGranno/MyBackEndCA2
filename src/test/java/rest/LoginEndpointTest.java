@@ -1,3 +1,4 @@
+/*
 package rest;
 
 import entities.Company;
@@ -245,3 +246,4 @@ public class LoginEndpointTest {
     }
 
 }
+*/
