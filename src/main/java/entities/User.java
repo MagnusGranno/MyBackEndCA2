@@ -3,14 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
@@ -36,6 +29,9 @@ public class User implements Serializable {
   @ManyToMany
   private List<Role> roleList = new ArrayList<>();
 
+  @ManyToOne
+  private Vehicle vehicle;
+
   public List<String> getRolesAsStrings() {
     if (roleList.isEmpty()) {
       return null;
@@ -45,6 +41,19 @@ public class User implements Serializable {
         rolesAsStrings.add(role.getRoleName());
       });
     return rolesAsStrings;
+  }
+  @ManyToMany
+  private List<Company> companyList = new ArrayList<>();
+
+  public List<String> getCompaniesAsStrings() {
+    if (companyList.isEmpty()) {
+      return null;
+    }
+    List<String> companiesAsStrings = new ArrayList<>();
+    companyList.forEach((company) -> {
+      companiesAsStrings.add(company.getCompanyName());
+    });
+    return companiesAsStrings;
   }
 
   public User() {}
@@ -87,6 +96,23 @@ public class User implements Serializable {
 
   public void addRole(Role userRole) {
     roleList.add(userRole);
+  }
+  public List<Company> getCompanyList() {
+    return companyList;
+  }
+  public void setCompanyList(List<Company> companyList) {
+    this.companyList = companyList;
+  }
+  public void addCompany(Company company) {
+    companyList.add(company);
+  }
+
+  public void setVehicle(Vehicle vehicle) {
+    this.vehicle = vehicle;
+  }
+
+  public Vehicle getVehicle() {
+    return vehicle;
   }
 
 }

@@ -1,8 +1,11 @@
 package utils;
 
 
+import entities.Company;
 import entities.Role;
 import entities.User;
+import entities.Vehicle;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,10 +33,31 @@ public class SetupTestUsers {
     em.getTransaction().begin();
     Role userRole = new Role("user");
     Role adminRole = new Role("admin");
+    Company Apple = new Company("Apple");
+    Company Microsoft = new Company("Microsoft");
+    Company Uber = new Company("Uber");
+    Company Netflix = new Company("Netflix");
+    Vehicle Car = new Vehicle("car");
+    Vehicle Bicycle = new Vehicle("Bicycle");
+    Vehicle Bus = new Vehicle("Bus");
+    Vehicle Train = new Vehicle("Train");
+    user.addCompany(Microsoft);
+    user.addCompany(Uber);
+    user.setVehicle(Car);
+    admin.addCompany(Netflix);
+    admin.addCompany(Apple);
     user.addRole(userRole);
     admin.addRole(adminRole);
     both.addRole(userRole);
     both.addRole(adminRole);
+    em.persist(Car);
+    em.persist(Bicycle);
+    em.persist(Bus);
+    em.persist(Train);
+    em.persist(Apple);
+    em.persist(Microsoft);
+    em.persist(Uber);
+    em.persist(Netflix);
     em.persist(userRole);
     em.persist(adminRole);
     em.persist(user);
