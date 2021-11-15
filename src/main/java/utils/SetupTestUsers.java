@@ -22,7 +22,7 @@ public class SetupTestUsers {
     // CHANGE the three passwords below, before you uncomment and execute the code below
     // Also, either delete this file, when users are created or rename and add to .gitignore
     // Whatever you do DO NOT COMMIT and PUSH with the real passwords
-
+//sidja
     User user = new User("user", "kode123");
     User admin = new User("admin", "kode123");
     User both = new User("user_admin", "kode123");
