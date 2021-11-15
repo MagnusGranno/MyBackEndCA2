@@ -1,8 +1,10 @@
 package rest;
 
+import entities.Company;
 import entities.User;
 import entities.Role;
 
+import entities.Vehicle;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
@@ -78,6 +80,27 @@ public class LoginEndpointTest {
             User both = new User("user_admin", "test");
             both.addRole(userRole);
             both.addRole(adminRole);
+            Company Apple = new Company("Apple");
+            Company Microsoft = new Company("Microsoft");
+            Company Uber = new Company("Uber");
+            Company Netflix = new Company("Netflix");
+            Vehicle Car = new Vehicle("car");
+            Vehicle Bicycle = new Vehicle("Bicycle");
+            Vehicle Bus = new Vehicle("Bus");
+            Vehicle Train = new Vehicle("Train");
+            user.addCompany(Microsoft);
+            user.addCompany(Uber);
+            user.setVehicle(Car);
+            admin.addCompany(Netflix);
+            admin.addCompany(Apple);
+            em.persist(Car);
+            em.persist(Bicycle);
+            em.persist(Bus);
+            em.persist(Train);
+            em.persist(Apple);
+            em.persist(Microsoft);
+            em.persist(Uber);
+            em.persist(Netflix);
             em.persist(userRole);
             em.persist(adminRole);
             em.persist(user);
